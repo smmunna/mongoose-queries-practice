@@ -1,3 +1,5 @@
+https://www.mongodb.com/docs/manual/reference/operator
+
 Insert Operation:
 ---------------------------------------------------------
  db.test.findOne({firstName:'Tahmid'})
@@ -7,3 +9,66 @@ Insert Operation:
    { firstName: 'Tanvir', lastName: 'Raj', email: 'tanvir@gmail.com' }
  ])
 
+Find query
+----------------------------------------------------
+db.test.find({age:17})
+
+db.test.find({gender:'Male'})
+
+Field Filtering
+----------------------------------------
+db.test.find({gender:'Male'},{phone:1,gender:1})
+db.test.find({gender:'Male'}).project({phone:1,gender:1})  //findOne not working with project
+
+{
+	"_id" : ObjectId("6406ad63fc13ae5a40000066"),
+	"phone" : "(670) 1831100",
+	"gender" : "Male"
+},
+
+Comparison operator
+--------------------------------------------
+$eq
+db.test.find({age:{$eq: 17}},{age:1,gender:1})
+
+$ne
+db.test.find({age:{$ne: 17}},{age:1,gender:1})
+
+$gt
+db.test.find({age:{$gt: 17}},{age:1,gender:1})
+
+$lt
+db.test.find({age:{$lt: 17}},{age:1,gender:1})
+
+$gte
+db.test.find({age:{$gte: 17}},{age:1,gender:1})
+
+$lte
+db.test.find({age:{$lte: 17}},{age:1,gender:1})
+
+$in
+db.test.find({age:{$in:[17]}},{age:1,gender:1}).sort({ age:1 })
+db.test.find(
+    {
+        gender: 'Female',
+        age:{$in: [17,18,20,21,22,23,24,25,26]},
+        interests:{$in: ['Gaming']}
+    },
+    {
+        age:1,
+        gender:1,
+        interests:1
+    }
+)
+
+$nin
+db.test.find({age:{$nin:[17,18]}},{age:1,gender:1}).sort({ age:1 })
+
+sorting
+db.test.find({age:{$gte: 17}},{age:1,gender:1}).sort({ age:1 })
+
+btween
+db.test.find({age:{$gte: 17, $lt:24}},{age:1,gender:1}).sort({ age:1 })
+
+exists
+db.test.find({ age: { $exists: false } })
