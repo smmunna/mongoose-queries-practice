@@ -1,0 +1,9 @@
+Insert Operation:
+---------------------------------------------------------
+ db.test.findOne({firstName:'Tahmid'})
+
+ db.test.insertMany([
+    { firstName: 'Fahim', lastName: 'Hasan', email: 'fahim@gmail.com' },
+   { firstName: 'Tanvir', lastName: 'Raj', email: 'tanvir@gmail.com' }
+ ])
+
